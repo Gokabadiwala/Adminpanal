@@ -31,14 +31,14 @@ import Header from "./Header";
 import { useNavigate } from "react-router-dom";
 export default function Orders() {
   const navigate = useNavigate();
-  const checklogin = localStorage.getItem("login");
+  const checklogin = localStorage.getuser("login");
   if (!checklogin) {
     navigate("/");
   }
   const [Data, setData] = useState([]);
   const [DataLength, setDataLength] = useState(0);
   const [open, setOpen] = useState(false);
-  const [deleteitem, setdeleteitem] = useState("");
+  const [deleteuser, setdeleteuser] = useState("");
   const [searchQuery, setsearchQuery] = useState("");
   const [UserData, setUserData] = useState("");
   const [UserOpen, setUserOpen] = useState(false);
@@ -87,8 +87,8 @@ export default function Orders() {
       getData();
       return data;
     }
-    return data.filter((item) => {
-      return item.OrderId.toString().indexOf(searchQuery.toString()) !== -1;
+    return data.filter((user) => {
+      return user.OrderId.toString().indexOf(searchQuery.toString()) !== -1;
     });
   };
   useEffect(() => {
@@ -107,7 +107,7 @@ export default function Orders() {
 
   const handleDelete = (id) => {
     setOpen(true);
-    setdeleteitem(id);
+    setdeleteuser(id);
   };
 
   const getData = async () => {
@@ -377,6 +377,18 @@ export default function Orders() {
                   }}
                 >
                   Order Id
+                </TableCell>                
+                <TableCell
+                  align="center"
+                  sx={{
+                    fontFamily: "Roboto",
+                    fontSize: "14px",
+                    fontWeight: 700,
+                    lineHeight: "16px",
+                    letterSpacing: "0em",
+                  }}
+                >
+                  Order Accept Date
                 </TableCell>
                 <TableCell
                   align="center"
@@ -560,7 +572,7 @@ export default function Orders() {
                 </TableCell>
               </TableRow>
             </TableHead>
-            {Data.map((user) => {
+            {Data.slice(0).reverse().map((user) => {
               i = i + 1;
               return (
                 <TableBody key={user._id}>
@@ -569,6 +581,7 @@ export default function Orders() {
                       {i}
                     </TableCell>
                     <TableCell align="center">{user.OrderId}</TableCell>
+                    <TableCell align="center">{user.OrderAcceptDate}</TableCell>
                     <TableCell align="center">{user.OrderDate}</TableCell>
                     <TableCell align="center">{user.OrderTime}</TableCell>
                     <TableCell align="center">{user.OrderQuantity}</TableCell>
@@ -578,7 +591,7 @@ export default function Orders() {
                     <TableCell align="center">{user.UserAddress}</TableCell>
                     <TableCell align="center">{user.UserInstruction}</TableCell>
                     <TableCell align="center">{user.PickupFrom}</TableCell>
-                    <TableCell align="center">{user.OrderStatus}</TableCell>
+                    <TableCell align="center" style={user.OrderStatus  === "Pending" ? {color: "orange"} : user.OrderStatus  === "Accepted" ? {color: "green"} : user.OrderStatus  === "Completed" ? {color: "green"} : {color: "red"}}>{user.OrderStatus}</TableCell>
                     <TableCell align="center">
                       <Button
                         variant="outlined"
@@ -632,7 +645,7 @@ export default function Orders() {
 
             <DialogActions>
               <Button onClick={() => setOpen(false)}>cancle</Button>
-              <Button onClick={() => confirmDelete(deleteitem)}>
+              <Button onClick={() => confirmDelete(deleteuser)}>
                 Yes, delete it!
               </Button>
             </DialogActions>

@@ -45,6 +45,20 @@ export default function AddressList() {
     setdeleteitem(id);
   };
 
+  const getData = async () => {
+    await axios
+      .get(
+        "https://kabadiwala.cyclic.app/getAddress"
+      )
+      .then((res) => {
+        setData(res.data);
+      });
+  };
+  
+  useEffect(() => {
+    getData();
+  }, []);
+
   const confirmDelete = async (id) => {
     await axios
       .delete(
@@ -57,18 +71,6 @@ export default function AddressList() {
       });
   };
 
-  const getData = async () => {
-    await axios
-      .get(
-        "https://kabadiwala.cyclic.app/getAddress"
-      )
-      .then((res) => {
-        setData(res.data);
-      });
-  };
-  useEffect(() => {
-    getData();
-  }, []);
   return (
     <>
       <Header />

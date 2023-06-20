@@ -69,6 +69,18 @@ const Logout=()=>{
                 />
               </ListItemButton>
             </ListItem>
+            
+            <ListItem disablePadding>
+              <ListItemButton onClick={()=>navigate('/OrderCancle')}>
+                <ListItemIcon>
+                  <AttachMoneyIcon sx={{ color: "#6945FF" }} />
+                </ListItemIcon>
+                <ListItemText
+                  sx={{ fontSize: "14px" }}
+                  primary="Order Cancle"
+                />
+              </ListItemButton>
+            </ListItem>
 
 
             <ListItem disablePadding>

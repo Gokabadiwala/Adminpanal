@@ -152,31 +152,7 @@ export default function TimeSlot() {
                     letterSpacing: "0em",
                   }}
                 >
-                  Start Time
-                </TableCell>
-                <TableCell
-                  align="center"
-                  sx={{
-                    fontFamily: "Roboto",
-                    fontSize: "14px",
-                    fontWeight: 700,
-                    lineHeight: "16px",
-                    letterSpacing: "0em",
-                  }}
-                >
-                  Middle Time
-                </TableCell>
-                <TableCell
-                  align="center"
-                  sx={{
-                    fontFamily: "Roboto",
-                    fontSize: "14px",
-                    fontWeight: 700,
-                    lineHeight: "16px",
-                    letterSpacing: "0em",
-                  }}
-                >
-                  End Time
+                  Time
                 </TableCell>
                 <TableCell
                   align="center"
@@ -201,9 +177,7 @@ export default function TimeSlot() {
                     <TableCell align="center" sx={{ width: "150px" }}>
                       {i}
                     </TableCell>
-                    <TableCell align="center">{user.StartTime}</TableCell>
-                    <TableCell align="center">{user.MiddleTime}</TableCell>
-                    <TableCell align="center">{user.EndTime}</TableCell>
+                    <TableCell align="center">{user.TimeItem}</TableCell>
                     <TableCell align="center">
                       <DeleteIcon
                         className="DeleteIcon"

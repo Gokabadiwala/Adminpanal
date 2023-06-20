@@ -12,6 +12,8 @@ import TimeSlot from './Componets/TimeSlot';
 import AddQuantity from './Componets/AddQuanity'
 import AddTimeSlot from './Componets/AddTimeSlot'
 import Login from "./Componets/Login";
+import OrderCancle from "./Componets/OrderCancle";
+
 export default function App() {
   return (
     <div className="App">
@@ -29,6 +31,7 @@ export default function App() {
             <Route  path="/AddQuantity" element={<AddQuantity/>}/>            
             <Route  path="/TimeSlot" element={<TimeSlot/>}/>            
             <Route  path="/AddTimeSlot" element={<AddTimeSlot/>}/>            
+            <Route  path="/OrderCancle" element={<OrderCancle/>}/>            
           </Routes>
         </BrowserRouter>
       </Box>

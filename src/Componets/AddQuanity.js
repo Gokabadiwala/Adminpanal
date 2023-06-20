@@ -6,7 +6,7 @@ import {
     Toolbar,
     Typography,
   } from "@mui/material";
-  import React, { useState } from "react";
+  import React, {useState } from "react";
   import ArrowBackIcon from "@mui/icons-material/ArrowBack";
   import CheckIcon from "@mui/icons-material/Check";
   import axios from "axios";
@@ -16,9 +16,7 @@ import { useNavigate } from "react-router-dom";
   export default function AddQuantity() {
     const navigate = useNavigate();
     const [data, setdata] = useState({
-      StartQuantity:"",
-      MiddleQuantity:"",
-      EndQuantity:""
+      QuantityItem:"",
     });
     const handleChange = (e) => {
       const { name, value } = e.target;
@@ -32,9 +30,7 @@ import { useNavigate } from "react-router-dom";
           const { message } = res.data;
           alert(message);
           setdata({
-            StartQuantity:"",
-            MiddleQuantity:"",
-            EndQuantity:""        
+            QuantityItem:"",
         })
         }).catch((err)=>{
             console.log(err);
@@ -109,60 +105,16 @@ import { useNavigate } from "react-router-dom";
               }}
             >
               <Typography variant="h6" sx={{ padding: "15px", color: "#4F5256" }}>
-              Start Quantity
+              Quantity
               </Typography>
               <TextField
                 sx={{ width: "75%" }}
-                placeholder="ex. Indore Delhi"
-                name="StartQuantity"
-                value={data.StartQuantity}
+                placeholder="ex. 100-300"
+                name="QuantityItem"
+                value={data.QuantityItem}
                 onChange={(e) => handleChange(e)}
               ></TextField>
-            </FormControl>
-  
-            <FormControl
-              sx={{
-                paddingLeft: "40px",
-                paddingRight: "50px",
-                paddingTop: "50px",
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-around",
-              }}
-            >
-              <Typography variant="h6" sx={{ padding: "15px", color: "#4F5256" }}>
-              Middle Quantity
-              </Typography>
-              <TextField
-                sx={{ width: "75%" }}
-                placeholder="MR 10, Vijay Nagar"
-                name="MiddleQuantity"
-                value={data.MiddleQuantity}
-                onChange={(e) => handleChange(e)}
-              ></TextField>
-            </FormControl>            
-            <FormControl
-              sx={{
-                paddingLeft: "40px",
-                paddingRight: "50px",
-                paddingTop: "50px",
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-around",
-              }}
-            >
-              <Typography variant="h6" sx={{ padding: "15px", color: "#4F5256" }}>
-              End Quantity
-              </Typography>
-              <TextField
-                sx={{ width: "75%" }}
-                placeholder="MR 10, Vijay Nagar"
-                name="EndQuantity"
-                value={data.EndQuantity}
-                onChange={(e) => handleChange(e)}
-              ></TextField>
-            </FormControl>
-  
+            </FormControl>  
             <FormControl
               sx={{
                 padding: "50px",

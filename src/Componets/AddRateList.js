@@ -18,6 +18,7 @@ import { useNavigate } from "react-router-dom";
     const [data, setdata] = useState({
       Category: "",
       ItemName: "",
+      Rateicon:'',
       Price: 0,
     });
     const handleChange = (e) => {
@@ -34,6 +35,7 @@ import { useNavigate } from "react-router-dom";
           setdata({
             Category: "",
             ItemName: "",
+            Rateicon:"",
             Price: 0,      
           })
         }).catch((err)=>{
@@ -141,6 +143,28 @@ import { useNavigate } from "react-router-dom";
                 onChange={(e) => handleChange(e)}
               ></TextField>
             </FormControl>
+            <FormControl
+              sx={{
+                paddingLeft: "40px",
+                paddingRight: "50px",
+                paddingTop: "50px",
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-around",
+              }}
+            >
+              <Typography variant="h6" sx={{ padding: "15px", color: "#4F5256" }}>
+                Rate icon
+              </Typography>
+              <TextField
+                sx={{ width: "75%" }}
+                placeholder="Copy Books"
+                type="url"
+                name="Rateicon"
+                value={data.Rateicon}
+                onChange={(e) => handleChange(e)}
+              ></TextField>
+            </FormControl>
   
             <FormControl
               sx={{
@@ -159,8 +183,8 @@ import { useNavigate } from "react-router-dom";
                 sx={{ width: "75%" }}
                 placeholder="ex. 20 30 40 50 60"
                 name="Price"
-                type="number"
-                value={data.Price}
+                type="tel"
+                value={data.Price === 0 ? null : data.Price}
                 onChange={(e) => handleChange(e)}
               ></TextField>
             </FormControl>  

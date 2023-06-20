@@ -16,9 +16,7 @@ import { useNavigate } from "react-router-dom";
   export default function AddTime() {
     const navigate = useNavigate();
     const [data, setdata] = useState({
-      StartTime:"",
-      MiddleTime:"",
-      EndTime:""
+      TimeItem:"",
     });
     const handleChange = (e) => {
       const { name, value } = e.target;
@@ -32,9 +30,7 @@ import { useNavigate } from "react-router-dom";
           const { message } = res.data;
           alert(message);
           setdata({
-            StartTime:"",
-            MiddleTime:"",
-            EndTime:""        
+            TimeItem:"",
         })
         }).catch((err)=>{
             console.log(err);
@@ -109,56 +105,13 @@ import { useNavigate } from "react-router-dom";
               }}
             >
               <Typography variant="h6" sx={{ padding: "15px", color: "#4F5256" }}>
-              Start Time
+              Time
               </Typography>
               <TextField
                 sx={{ width: "75%" }}
                 placeholder="ex. Indore Delhi"
-                name="StartTime"
-                value={data.StartTime}
-                onChange={(e) => handleChange(e)}
-              ></TextField>
-            </FormControl>
-  
-            <FormControl
-              sx={{
-                paddingLeft: "40px",
-                paddingRight: "50px",
-                paddingTop: "50px",
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-around",
-              }}
-            >
-              <Typography variant="h6" sx={{ padding: "15px", color: "#4F5256" }}>
-              Middle Time
-              </Typography>
-              <TextField
-                sx={{ width: "75%" }}
-                placeholder="MR 10, Vijay Nagar"
-                name="MiddleTime"
-                value={data.MiddleTime}
-                onChange={(e) => handleChange(e)}
-              ></TextField>
-            </FormControl>            
-            <FormControl
-              sx={{
-                paddingLeft: "40px",
-                paddingRight: "50px",
-                paddingTop: "50px",
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-around",
-              }}
-            >
-              <Typography variant="h6" sx={{ padding: "15px", color: "#4F5256" }}>
-              End Time
-              </Typography>
-              <TextField
-                sx={{ width: "75%" }}
-                placeholder="MR 10, Vijay Nagar"
-                name="EndTime"
-                value={data.EndTime}
+                name="TimeItem"
+                value={data.TimeItem}
                 onChange={(e) => handleChange(e)}
               ></TextField>
             </FormControl>

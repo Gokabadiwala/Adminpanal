@@ -10,71 +10,35 @@ import {
   TableHead,
   TableRow,
   Paper,
-  Button,
 } from "@mui/material";
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
-import DialogTitle from "@mui/material/DialogTitle";
-
-//icons
-import DeleteIcon from "@mui/icons-material/Delete";
 
 import axios from "axios";
 import Header from "./Header";
 import { useNavigate } from "react-router-dom";
 
-export default function QuantityList() {
+export default function OrderCancle() {
+
   const navigate = useNavigate();
   const checklogin = localStorage.getItem('login');
   if(!checklogin){
     navigate('/');
   }
   const [Data, setData] = useState([]);
-  const [open, setOpen] = useState(false);
-  const [deleteitem, setdeleteitem] = useState("");
   let i = 0;
   
-  const handleClick=()=>{
-    navigate('/AddQuantity')
-  }
-  // ---delete Code----
-  const handleclose = () => {
-    setOpen(false);
-  };
-
-  const handleDelete = (id) => {
-    setOpen(true);
-    setdeleteitem(id);
-  };
-
-  const confirmDelete = async (id) => {
-    await axios
-      .delete(
-        `https://kabadiwala.cyclic.app/deleteQuantity/${id}`
-      )
-      .then((res) => {
-        alert(res.data.message);
-        setOpen(false);
-        getData();
-
-      });
-  };
-
   const getData = async () => {
     await axios
       .get(
-        "https://kabadiwala.cyclic.app/getAllQuantity"
+        "https://kabadiwala.cyclic.app/OrderCancle"
       )
       .then((res) => {
         setData(res.data);
-        console.log(res.data);
       });
   };
   useEffect(() => {
     getData();
   }, []);
+  
   return (
     <>
       <Header />
@@ -105,27 +69,11 @@ export default function QuantityList() {
                     textAlign: "center",
                   }}
                 >
-                  Kabadiwala Quantity Management
+                  Kabadiwala Order Cancle Management
                 </TableCell>
               </TableRow>
             </TableHead>
             {/* //second row */}
-            <TableHead>
-              <TableRow>
-                <TableCell
-                  colSpan={5}
-                  sx={{
-                    fontFamily: "Roboto",
-                    fontSize: "20px",
-                    fontWeight: 600,
-                    lineHeight: "0px",
-                    letterSpacing: "0em",
-                  }}
-                >
-                  <Button variant="outlined" onClick={handleClick}> Add Quantity</Button>
-                </TableCell>
-              </TableRow>
-            </TableHead>
 
             {/* // Thrid row */}
             <TableHead>
@@ -140,7 +88,7 @@ export default function QuantityList() {
                     letterSpacing: "0em",
                   }}
                 >
-                    Id
+                    S.no
                 </TableCell>
                 <TableCell
                   align="center"
@@ -152,7 +100,7 @@ export default function QuantityList() {
                     letterSpacing: "0em",
                   }}
                 >
-                  Quantity
+                  Title
                 </TableCell>
                 <TableCell
                   align="center"
@@ -164,7 +112,7 @@ export default function QuantityList() {
                     letterSpacing: "0em",
                   }}
                 >
-                  Delete
+                  Reason
                 </TableCell>
               </TableRow>
             </TableHead>
@@ -177,15 +125,8 @@ export default function QuantityList() {
                     <TableCell align="center" sx={{ width: "150px" }}>
                       {i}
                     </TableCell>
-                    <TableCell align="center">{user.QuantityItem}</TableCell>
-                    <TableCell align="center">
-                      <DeleteIcon
-                        className="DeleteIcon"
-                        onClick={() =>
-                          handleDelete(user._id)
-                        }
-                      />
-                    </TableCell>
+                    <TableCell align="center">{user.Title}</TableCell>
+                    <TableCell align="center">{user.Reason}</TableCell>
                   </TableRow>
                 </TableBody>
               );
@@ -193,27 +134,6 @@ export default function QuantityList() {
           </Table>
         </TableContainer>
 
-
-        <Dialog
-          open={open}
-          onClose={handleclose}
-          aria-labelledby="alert-dialog-title"
-          aria-describedby="alert-dialog-description"
-        >
-          <DialogTitle id="alert-dialog-title">Are you sure ?</DialogTitle>
-          <DialogContent>
-            <DialogContentText id="alert-dialog-description">
-              Your will not be able to recover this imaginary file!
-            </DialogContentText>
-
-            <DialogActions>
-              <Button onClick={() => setOpen(false)}>cancle</Button>
-              <Button onClick={() => confirmDelete(deleteitem)}>
-                Yes, delete it!
-              </Button>
-            </DialogActions>
-          </DialogContent>
-        </Dialog>
       </Box>
     </>
   );
