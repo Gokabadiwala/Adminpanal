@@ -31,7 +31,7 @@ import Header from "./Header";
 import { useNavigate } from "react-router-dom";
 export default function Orders() {
   const navigate = useNavigate();
-  const checklogin = localStorage.getuser("login");
+  const checklogin = localStorage.getItem("login");
   if (!checklogin) {
     navigate("/");
   }
@@ -202,7 +202,7 @@ export default function Orders() {
             <TableHead>
               <TableRow>
                 <TableCell
-                  colSpan={6}
+                  colSpan={7}
                   sx={{
                     fontFamily: "Roboto",
                     fontSize: "20px",
@@ -591,7 +591,7 @@ export default function Orders() {
                     <TableCell align="center">{user.UserAddress}</TableCell>
                     <TableCell align="center">{user.UserInstruction}</TableCell>
                     <TableCell align="center">{user.PickupFrom}</TableCell>
-                    <TableCell align="center" style={user.OrderStatus  === "Pending" ? {color: "orange"} : user.OrderStatus  === "Accepted" ? {color: "green"} : user.OrderStatus  === "Completed" ? {color: "green"} : {color: "red"}}>{user.OrderStatus}</TableCell>
+                    <TableCell align="center"><Typography style={user.OrderStatus  === "Pending" ? {color: "orange"} : user.OrderStatus  === "Accepted" ? {color: "green"} : user.OrderStatus  === "Completed" ? {color: "green"} : {color: "red"}}>{user.OrderStatus}</Typography></TableCell>
                     <TableCell align="center">
                       <Button
                         variant="outlined"
