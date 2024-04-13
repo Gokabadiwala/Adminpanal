@@ -580,7 +580,7 @@ export default function Orders() {
                     <TableCell align="center" sx={{ width: "150px" }}>
                       {i}
                     </TableCell>
-                    <TableCell align="center">{user.OrderIf}</TableCell>
+                    <TableCell align="center">{user.OrderId}</TableCell>
                     <TableCell align="center">{user.OrderAcceptDate}</TableCell>
                     <TableCell align="center">{user.OrderDate}</TableCell>
                     <TableCell align="center">{user.OrderTime}</TableCell>
