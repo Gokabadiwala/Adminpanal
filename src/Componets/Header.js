@@ -13,7 +13,7 @@ export default function Header() {
       >
         <Toolbar sx={{justifyContent:'space-between'}}>
           <Typography variant="h6" noWrap component="div">
-           Kabadiwala Admin Panal
+          GoKabadiwala Admin Panal
           </Typography>
           <AccountCircleIcon/>
         </Toolbar>
